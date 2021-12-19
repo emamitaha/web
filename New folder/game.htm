@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: bnazanin;
+                font-size: 50px;
+                color: brown;
+                
+            }
+            body{
+                background-image: url(3.png);
+                background-repeat:no-repeat;
+                width: 1580px;
+                height: 600px;
+                background-size:cover;
+                background-position: top;
+                border-radius: 20px 20px 20px 20px;
+            }
+            p{
+                color: blueviolet;
+                font-family: Impact;
+            }
+            html, body {
+                height: 100%;
+            }
+            .main {
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: inline-block;
+            }
+            .select, .score {
+                text-align: center;
+            }
+            .select span {
+                width: 120px;
+                height: 200px;
+                display: inline-block;
+                cursor: pointer;
+            }
+                     
+            .select .paper {
+                background: url('paper.png') center / cover;
+                border-radius: 20px 20px 20px 20px;
+                transition: 1s;
+            }
+            .select .rock {
+                background: url('rock.png') center / cover;
+                border-radius: 20px 20px 20px 20px;
+                transition: 1s;
+            }
+            .select .scissor {
+                background: url('scissor.png') center / cover;
+                border-radius: 20px 20px 20px 20px;
+                transition: 1s;
+            }
+        </style>
+         <body>
+             <p style="text-align: center;">Salam Be Bazi Sang. Kaghaz. Ghaiychi Khoshamadid</p>
+
+         </body>
+        <script>
+            $(function(){
+                var array = ['paper', 'rock', 'scissor'];
+                var yourscore = 0;
+                var pcscore = 0;
+
+                $(document).on('click', '.your span', function(){
+                    var you = $(this).attr('class');
+
+                    $('.your span').css('opacity', 0.3);
+                    $(this).css('opacity', 1.0);
+
+                    var pc = array[Math.floor(Math.random()*array.length)
+                    ];
+                    $('.pc span').attr("class", "");
+                    $('.pc span').addClass(pc);
+
+                    if(you == pc){
+                        yourscore += 1.0;
+                        pcscore += 1.0;
+                    } else if(you == "paper" && pc == "rock"){
+                        yourscore++; 
+                    } else if(you == "rock" && pc == "scissor"){
+                        yourscore++; 
+                    } else if(you == "scissor" && pc == "paper"){
+                        yourscore++;
+                    } else if(pc == "paper" && you == "rock"){
+                        pcrscore++; 
+                    } else if(pc == "rock" && you == "paper"){
+                        pcrscore++; 
+                    } else if(pc == "scissor" && you == "scissor"){
+                        pcscore++;    
+                    }
+
+                    $('.yourscore').html(yourscore);
+                    $('.pcscore').html(pcscore); 
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="main">
+            <div class="select your">
+                <span class="paper"></span>
+                <span class="rock"></span>
+                <span class="scissor"></span>
+            </div>
+            <div class="select pc">
+                <span></span>
+            </div>
+            <div class="score">
+                امتیاز شما: <span class="yourscore">0</span><br>
+                امتیاز کاپیوتر: <span class="pcscore">0</span>
+            </div>
+        </div>
+    </body>
+</html>
